@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: game_events
+    database: playperfect-455514
+    schema: row_data
+    tables:
+      - name: events
+        description: Raw events table containing tournament related events
+
+models:
+  - name: fct_daily_player
+    columns:
+      - name: date_utc
+        tests:
+          - not_null
+      - name: date_utc,player_id
+        tests:
+          - uniqueness:
+              partition_column: date_utc
+  - name: fct_games
+    columns:
+      - name: date_utc
+        tests:
+          - not_null
+      - name: date_utc,player_id,room_id,tournament_id
+        tests:
+          - uniqueness:
+              partition_column: date_utc
+  - name: fct_rooms
+    columns:
+      - name: room_id
+        tests:
+          - not_null
+      - name: room_id
+        tests:
+          - uniqueness

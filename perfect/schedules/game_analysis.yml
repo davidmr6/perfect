@@ -1,0 +1,10 @@
+schedules:
+  - name: hourly_game_tables
+    cron: "5 * * * *"
+    selectors:
+      - tag:hourly
+
+  - name: daily_player_tables
+    cron: "15 0 * * *"
+    selectors:
+      - tag:daily
